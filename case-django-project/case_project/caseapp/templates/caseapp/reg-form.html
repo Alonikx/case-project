@@ -1,0 +1,671 @@
+{% load static %}
+<script>
+	function incr() {
+	    var price = document.getElementById('1500')
+        const quantityInput = document.getElementById('quantity')
+        if (parseInt(quantityInput.value) < 5) {
+          quantityInput.value = parseInt(quantityInput.value) + 1
+          price.innerHTML = 1500 + Number(price.innerHTML)
+        }
+    }
+
+    function decr() {
+        var price = document.getElementById('1500')
+        const quantityInput = document.getElementById('quantity')
+        if (parseInt(quantityInput.value) > 0) {
+            quantityInput.value = parseInt(quantityInput.value) - 1
+            price.innerHTML =Number(price.innerHTML) - 1500
+        }
+    }
+    function incr1() {
+	    var price = document.getElementById('1500')
+        const quantityInput = document.getElementById('quantity1')
+        if (parseInt(quantityInput.value) < 5) {
+          quantityInput.value = parseInt(quantityInput.value) + 1
+          price.innerHTML = Number(price.innerHTML) + 700
+        }
+    }
+
+    function decr1() {
+        var price = document.getElementById('1500')
+        const quantityInput = document.getElementById('quantity1')
+        if (parseInt(quantityInput.value) > 0) {
+            quantityInput.value = parseInt(quantityInput.value) - 1
+            price.innerHTML = Number(price.innerHTML) - 700
+        }
+    }
+    function btn(btnID) {
+          var btn1 = document.getElementById('1')
+          var btn2 = document.getElementById('2')
+          var btn3 = document.getElementById('3')
+          if (btnID==btn1.id && btn1.className != 'div-active')
+          {
+			btn1.className = 'div-active';
+			btn2.className = 'div-inactive';
+			btn3.className = 'div-inactive';
+          }
+		  else if (btnID==btn2.id && btn2.className != 'div-active'){
+			btn1.className = 'div-inactive';
+			btn2.className = 'div-active';
+			btn3.className = 'div-inactive';
+		  }
+		  else if (btnID==btn3.id && btn3.className != 'div-active'){
+			btn1.className = 'div-inactive';
+			btn2.className = 'div-inactive';
+			btn3.className = 'div-active';
+		  }
+	}
+    function frm_upl(){
+            var datetime = document.getElementById('dt1');
+            var qt1 = document.getElementById('qt1');
+            var qt2 = document.getElementById('qt2');
+            var pr = document.getElementById('pr1');
+
+            var dt1 = document.querySelector(".div-active").getElementsByTagName('span')[0].innerHTML;
+            var dt2 = document.querySelector(".div-active").getElementsByTagName('span')[1].innerHTML;
+            var quantity1 = document.getElementById('quantity').value
+            var quantity2 = document.getElementById('quantity1').value
+            var price_sum = document.getElementById('1500').innerHTML
+            datetime.value = dt1+' '+dt2;
+            qt1.value = quantity1
+            qt2.value = quantity2
+            pr.value = price_sum + ' рублей'
+            }
+
+</script>
+
+<div class="div">
+  <div class="div-2">
+    <a href="{% url 'info'%}">
+    <img
+      loading="lazy"
+      src="{% static 'caseapp/allpages-img/arrow-icon.png' %}"
+      class="img"
+    />
+    </a>
+    <div class="div-3">Назад</div>
+  </div>
+  <div class="div-4">
+    <div class="div-5">
+      <div class="div-6">Тур "Жигулевский заповедник"</div>
+      <div class="div-7">Выберите дату и время</div>
+      <div class="div-8">
+        <div class="div-9">
+            <button class="div-10" id="1" onclick="btn(1)">
+              <div class="div-11"><span>08.06.2024</span></div>
+              <div class="div-12"><span>10:00</span></div>
+          </button>
+            <button class="div-13" id="2" onclick="btn(2)">
+              <div class="div-14"><span>16.06.2024</span></div>
+              <div class="div-15"><span>10:00</span></div>
+          </button>
+            <button class="div-16" id="3" onclick="btn(3)">
+              <div class="div-17"><span>22.06.2024</span></div>
+              <div class="div-18"><span>10:00</span></div>
+          </button>
+        </div>
+      </div>
+      <div class="div-19">Укажите количество участников</div>
+      <div class="div-20">
+        <div class="div-21">Общий групповой билет</div><span class="sp-1500">1200 рублей</span>
+        <div class="quantity_inner">
+            <button class="bt_minus" onclick="decr()">
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+            <input id="quantity" type="text" value="0" size="2" class="quantity" maxlength="1"/>
+            <button class="bt_plus" onclick="incr()">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+        </div>
+      </div>
+      <div class="div-20">
+        <div class="div-21">Льготный билет</div><span class="sp-700">800 рублей</span>
+        <div class="quantity_inner">
+            <button class="bt_minus" onclick="decr1()">
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+            <input id="quantity1" type="text" value="0" size="2" class="quantity" maxlength="1"/>
+            <button class="bt_plus" onclick="incr1()">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+        </div>
+      </div>
+      <div class="div-24">
+        <div class="div-25">Итого: <span class="1500" id="1500">0</span> рублей</div>
+      </div>
+        <form method="post" class="fr1">
+            {% csrf_token %}
+            {{ form.date_time }}
+            {{ form.quantity_adult }}
+            {{ form.quantity_kids }}
+            {{ form.price }}
+            <button class="div-33" onclick="frm_upl()" type="submit">Оплатить</button>
+        </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  .fr1{
+    align-self:center;
+  }
+  .quantity_inner * {
+      box-sizing: border-box;
+  }
+  .quantity_inner {
+      display: flex;
+      justify-content: center;
+  }
+  .quantity_inner .bt_minus,
+  .quantity_inner .bt_plus,
+  .quantity_inner .quantity {
+      color: #BFE2FF;
+      height: 40px;
+      width: 40px;
+      padding: 0;
+      margin: 10px 2px;
+      border-radius: 10px;
+      border: 4px solid #BFE2FF;
+      background: #337AB7;
+      cursor: pointer;
+      outline: 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 4px 6px rgba(0,0,0,0.2);
+  }
+  .quantity_inner .quantity {
+      width: 50px;
+      text-align: center;
+      font-size: 22px;
+      color: #FFF;
+      font-family:Menlo,Monaco,Consolas,"Courier New",monospace;
+  }
+  .quantity_inner .bt_minus svg,
+  .quantity_inner .bt_plus svg {
+      stroke: #BFE2FF;
+      stroke-width: 4;
+      transition: 0.5s;
+      margin: 4px;
+  }
+  .quantity_inner .bt_minus:hover svg,
+  .quantity_inner .bt_plus:hover svg {
+      stroke: #FFF;
+  }
+  .quantity {
+    border-radius: 15px;
+    height: 35px;
+    width: 87px;
+    text-align: center;
+    font-size: 20px;
+    border-color: rgba(56, 160, 255, 0.7);
+    border-width:3px;
+  }
+  .div {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 80px 17px 34px;
+  }
+  @media (max-width: 991px) {
+    .div {
+      padding: 0 20px;
+    }
+  }
+  .div-00{
+    align-self: center;
+    display: flex;
+    max-width: 100%;
+    flex-direction: column;
+    color: #000;
+    font-weight: 500;
+  }
+
+  .div-2 {
+    align-self: start;
+    display: flex;
+    gap: 12px;
+    font-size: 24px;
+    color: rgba(56, 160, 255, 0.7);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  @media (max-width: 991px) {
+    .div-2 {
+      white-space: initial;
+    }
+  }
+  .img {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 46px;
+  }
+  .div-3 {
+    font-family: Inter, sans-serif;
+    margin: auto 0;
+  }
+  .div-4 {
+    border-radius: 15px;
+    border-color: rgba(56, 160, 255, 1);
+    border-style: solid;
+    border-width: 3px;
+    background-color: #fff;
+    align-self: center;
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 1280px;
+    align-items: center;
+    justify-content: center;
+    padding: 39px 60px;
+  }
+  @media (max-width: 991px) {
+    .div-4 {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+  }
+  .div-5 {
+    display: flex;
+    width: 930px;
+    max-width: 100%;
+    flex-direction: column;
+  }
+  .sp-1500{
+      color: #000;
+       align-self: center;
+       font: 500 32px Inter, sans-serif;
+  }
+  .sp-700{
+      color: #000;
+       align-self: center;
+       font: 500 32px Inter, sans-serif;
+  }
+  .div-6 {
+    color: #000;
+    align-self: center;
+    font: 500 32px Inter, sans-serif;
+  }
+  .div-7 {
+    color: #000;
+    align-self: center;
+    margin-top: 33px;
+    font: 500 24px Inter, sans-serif;
+  }
+  .div-8 {
+    justify-content: center;
+    margin: 47px 33px 0;
+  }
+  @media (max-width: 991px) {
+    .div-8 {
+      max-width: 100%;
+      margin: 40px 10px 0 0;
+    }
+  }
+  .div-9 {
+    gap: 20px;
+    display: flex;
+  }
+  @media (max-width: 991px) {
+    .div-9 {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0px;
+    }
+  }
+  .column {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 33%;
+    margin-left: 0px;
+  }
+  @media (max-width: 991px) {
+    .column {
+      width: 100%;
+    }
+  }
+  .div-10 {
+    border-radius: 15px;
+    background-color: #38a0ff;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500;
+    white-space: nowrap;
+    width: 100%;
+    padding: 42px 41px;
+  }
+  .div-10:hover{
+    border-color: rgba(56, 160, 255, 1);
+    background-color: fff;
+    color: rgba(56, 160, 255, 1);
+    border-width: 3px;
+    border-style:solid;
+  }
+  .div-inactive{
+    border-radius: 15px;
+    background-color: #38a0ff;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500;
+    white-space: nowrap;
+    width: 100%;
+    padding: 42px 41px;
+  }
+  .div-active{
+    border-color: rgba(56, 160, 255, 1);
+    color: rgba(56, 160, 255, 1);
+    border-radius: 15px;
+    background-color: fff;
+    display: flex;
+    border-width: 5px;
+    border-style:solid;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 24px;
+    font-weight: 500;
+    white-space: nowrap;
+    width: 100%;
+    padding: 42px 41px;
+  }
+  @media (max-width: 991px) {
+    .div-10 {
+      margin-top: 40px;
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
+  .div-11 {
+    font-family: Inter, sans-serif;
+    align-self: center;
+  }
+  .div-12 {
+    font-family: Inter, sans-serif;
+    align-self: center;
+    margin-top: 11px;
+  }
+  .column-2 {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 33%;
+    margin-left: 20px;
+  }
+  @media (max-width: 991px) {
+    .column-2 {
+      width: 100%;
+    }
+  }
+  .div-13 {
+    border-radius: 15px;
+    background-color: #38a0ff;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500;
+    white-space: nowrap;
+    width: 100%;
+    padding: 42px 44px;
+  }
+  .div-13:hover{
+    border-color: rgba(56, 160, 255, 1);
+    background-color: fff;
+    color: rgba(56, 160, 255, 1);
+    border-width: 3px;
+    border-style:solid;
+  }
+  @media (max-width: 991px) {
+    .div-13 {
+      margin-top: 40px;
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
+  .div-14 {
+    font-family: Inter, sans-serif;
+    align-self: center;
+  }
+  .div-15 {
+    font-family: Inter, sans-serif;
+    align-self: center;
+    margin-top: 11px;
+  }
+  .column-3 {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 33%;
+    margin-left: 20px;
+  }
+  @media (max-width: 991px) {
+    .column-3 {
+      width: 100%;
+    }
+  }
+  .div-16 {
+    border-radius: 15px;
+    background-color: #38a0ff;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500;
+    white-space: nowrap;
+    width: 100%;
+    padding: 42px 44px;
+  }
+  .div-16:hover{
+    border-color: rgba(56, 160, 255, 1);
+    background-color: fff;
+    color: rgba(56, 160, 255, 1);
+    border-width: 3px;
+    border-style:solid;
+   }
+  @media (max-width: 991px) {
+    .div-16 {
+      margin-top: 40px;
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
+  .div-17 {
+    font-family: Inter, sans-serif;
+    align-self: center;
+  }
+  .div-18 {
+    font-family: Inter, sans-serif;
+    align-self: center;
+    margin-top: 11px;
+  }
+  .div-19 {
+    color: #000;
+    align-self: center;
+    margin-top: 30px;
+    font: 500 24px Inter, sans-serif;
+  }
+  .div-20 {
+    border-radius: 15px;
+    border-color: rgba(56, 160, 255, 1);
+    border-style: solid;
+    border-width: 3px;
+    background-color: #fff;
+    display: flex;
+    margin-top: 21px;
+    width: 95.5%;
+    gap: 20px;
+    color: #000;
+    font-weight: 500;
+    padding: 13px 19px;
+  }
+  @media (max-width: 991px) {
+    .div-20 {
+      max-width: 100%;
+      flex-wrap: wrap;
+      padding-left: 20px;
+    }
+  }
+  .div-21 {
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: auto 0;
+    font: 28px Inter, sans-serif;
+  }
+  .div-22 {
+    display: flex;
+    gap: 20px;
+    font-size: 40px;
+    white-space: nowrap;
+    justify-content: space-between;
+  }
+  @media (max-width: 991px) {
+    .div-22 {
+      white-space: initial;
+    }
+  }
+  .img2 {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 52px;
+  }
+  .div-23 {
+    font-family: Inter, sans-serif;
+    margin: auto 0;
+  }
+  .img-3 {
+    aspect-ratio: 1.02;
+    object-fit: auto;
+    object-position: center;
+    width: 53px;
+  }
+  .div-24 {
+    align-self: end;
+    display: flex;
+    margin-top: 20px;
+    width: 643px;
+    max-width: 100%;
+    flex-direction: column;
+    color: #000;
+    font-weight: 500;
+  }
+  .div-25 {
+    border-radius: 15px;
+    border-color: rgba(56, 160, 255, 1);
+    border-style: solid;
+    border-width: 3px;
+    background-color: #fff;
+    align-self: end;
+    padding: 23px 12px 14px;
+    font: 40px Inter, sans-serif;
+  }
+  .div-26 {
+    margin-top: 53px;
+    font: 24px Inter, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .div-26 {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  }
+  .div-27 {
+    align-self: start;
+    margin: 37px 0 0 147px;
+    font: 32px Inter, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .div-27 {
+      margin-left: 10px;
+    }
+  }
+  .div-28 {
+    border-radius: 15px;
+    border-color: rgba(56, 160, 255, 1);
+    border-style: solid;
+    border-width: 3px;
+    background-color: #fff;
+    margin-top: 17px;
+    height: 76px;
+  }
+  @media (max-width: 991px) {
+    .div-28 {
+      max-width: 100%;
+    }
+  }
+  .div-29 {
+    color: #000;
+    align-self: center;
+    margin-top: 37px;
+    font: 500 32px Inter, sans-serif;
+  }
+  .div-30 {
+    border-radius: 15px;
+    border-color: rgba(56, 160, 255, 1);
+    border-style: solid;
+    border-width: 3px;
+    background-color: #fff;
+    margin-top: 16px;
+    height: 76px;
+  }
+  @media (max-width: 991px) {
+    .div-30 {
+      max-width: 100%;
+    }
+  }
+  .div-31 {
+    color: #000;
+    align-self: center;
+    margin-top: 38px;
+    font: 500 32px Inter, sans-serif;
+  }
+  .div-32 {
+    border-radius: 15px;
+    border-color: rgba(56, 160, 255, 1);
+    border-style: solid;
+    border-width: 3px;
+    background-color: #fff;
+    margin-top: 9px;
+    height: 76px;
+  }
+  @media (max-width: 991px) {
+    .div-32 {
+      max-width: 100%;
+    }
+  }
+  .div-33 {
+    border-radius: 15px;
+    background-color: rgba(56, 160, 255, 1);
+    align-self: center;
+    margin-top: 78px;
+    width: 549px;
+    max-width: 100%;
+    align-items: center;
+    color: #fff;
+    white-space: nowrap;
+    justify-content: center;
+    padding: 42px 60px;
+    font: 500 40px Inter, sans-serif;
+  }
+  .div-33:hover{
+    border-color: rgba(56, 160, 255, 1);
+    background-color: fff;
+    color: rgba(56, 160, 255, 1);
+    border-width: 5px;
+    border-style:solid;
+    transition-duration:0.2s;
+  }
+  @media (max-width: 991px) {
+    .div-33 {
+      margin-top: 40px;
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
+</style>

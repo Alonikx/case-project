@@ -1,0 +1,317 @@
+{% load static %}
+<script src="https://api-maps.yandex.ru/2.1/?apikey=62ca4e4d-482a-4702-a076-d732a09ddb2f&lang=ru_RU"></script>
+<div class="div">
+  <div class="div-2">
+    <a href="{% url 'home'%}">
+    <img
+      loading="lazy"
+      src="{% static 'caseapp/allpages-img/arrow-icon.png'%}"
+      class="img"
+    />
+    </a>
+    <div class="div-3">Назад</div>
+
+  </div>
+  <div class="div-4">
+    <div class="div-5">Тур "Жигулевский заповедник"</div>
+    <div class="div-6">
+      Жигулёвский заповедник является домом для многих редких видов животных и растений. Здесь можно встретить лосей, кабанов, волков, рысей, зайцев, лисиц, барсуков, бобров, куниц, горностаев, выхухолей, косуль, глухарей, тетеревов, рябчиков, белых аистов, серых цапель и других представителей фауны. Всего на территории заповедника обитает более 40 видов млекопитающих и 200 видов птиц.
+    </div>
+    <div class="div-8">
+      Флора заповедника также очень разнообразна. Здесь произрастают сосновые леса, дубравы, берёзовые рощи, осинники, ельники, липняки, черноольшаники, а также различные виды лугов и болот. Всего на территории заповедника зарегистрировано более 800 видов сосудистых растений.
+    </div>
+    <div class="div-8">
+      Жигулёвский заповедник является важным объектом экологического туризма. Ежегодно его посещают тысячи туристов из разных регионов России и зарубежья. Для посетителей разработаны специальные маршруты, позволяющие ознакомиться с уникальной природой Жигулей и узнать больше о работе заповедника.
+    </div>
+    <div class="div-8">
+      Бахилова Поляна -> Стрельная гора -> Храм природы
+    </div>
+    <div class="div-8">
+      В стоимость билетов уже включено посещение всех 3х мест тура. Советуем взять с собой перекус и одеться по погоде
+    </div>
+    <div class="div-9">
+      <div class="div-10">Бесплатный билет для детей (до 6-ти лет)</div>
+      <div class="div-10">Длительность: 3 часа</div>
+      <div class="div-11">Стоимость: от 800 руб.</div>
+    </div>
+    <button class="div-12" type="button" onclick="location.href='{% url 'bron'%}'">Забронировать</button>
+  </div>
+  <div class="div-13">
+    <div class="div-14">Маршрут</div>
+    <div id="myMap" class="div-15"></div>
+  </div>
+</div>
+<script>
+  	points = [[53.436701, 49.663034], [53.435318, 49.757799], [53.415745, 49.924847], [53.442355, 49.793898], [53.444323, 49.789437], [53.443991, 49.797226], [53.443681, 49.794837], [53.433047, 49.667419]]
+	ymaps.ready(init);
+	function init(){
+		var myMap = new ymaps.Map ('myMap', {
+			center: [53.435318, 49.757799], //координаты центра
+			zoom:12 //уровень приближения
+		});
+	var myPlacemark = new ymaps.Placemark(points[0], {
+        iconContent: '', //текст на иконке
+        balloonContent: 'Бахилова Поляна. Отправная точка'
+    }, {
+        preset: 'twirl#blueStretchyIcon' //тип иконки
+    });
+	var myPlacemark2 = new ymaps.Placemark(points[1], {
+        iconContent: '', //текст на иконке
+        balloonContent: 'Стрельная гора. Точка номер 2' /*текст появляющийся после нажатия*/
+    }, {
+        preset: 'twirl#blueStretchyIcon' //тип иконки
+    });
+	var myPlacemark3 = new ymaps.Placemark(points[2], {
+        iconContent: '', //текст на иконке
+        balloonContent: 'Храм природы. Конечная точка' /*текст появляющийся после нажатия*/
+    }, {
+        preset: 'twirl#blueStretchyIcon' //тип иконки
+    });
+	var myPlacemark4 = new ymaps.Placemark(points[3], {
+        iconContent: '', //текст на иконке
+        balloonContent: 'Волга-гриль' /*текст появляющийся после нажатия*/
+    }, {
+        preset: 'twirl#blueStretchyIcon' //тип иконки
+    });
+    var myPlacemark5 = new ymaps.Placemark(points[4], {
+        iconContent: '', //текст на иконке
+        balloonContent: 'Сыроварня' /*текст появляющийся после нажатия*/
+    }, {
+        preset: 'twirl#blueStretchyIcon' //тип иконки
+    });
+    var myPlacemark6 = new ymaps.Placemark(points[5], {
+        iconContent: '', //текст на иконке
+        balloonContent: 'Поликлиника' /*текст появляющийся после нажатия*/
+    }, {
+        preset: 'twirl#blueStretchyIcon' //тип иконки
+    });
+    var myPlacemark7 = new ymaps.Placemark(points[6], {
+        iconContent: '', //текст на иконке
+        balloonContent: 'Аптека' /*текст появляющийся после нажатия*/
+    }, {
+        preset: 'twirl#blueStretchyIcon' //тип иконки
+    });
+    var myPlacemark8 = new ymaps.Placemark(points[7], {
+        iconContent: '', //текст на иконке
+        balloonContent: 'Касса жигулевский заповедник. 50 процентов скидка для владельцев карты жителя' /*текст появляющийся после нажатия*/
+    }, {
+        preset: 'twirl#blueStretchyIcon' //тип иконки
+    });
+	var myPolyline = new ymaps.Polyline(points.slice(0,3), {}, {
+        // Задаем опции геообъекта.
+        // Цвет с прозрачностью.
+        strokeColor: "#38A0FF",
+        // Ширину линии.
+        strokeWidth: 4})
+	myMap.geoObjects.add(myPlacemark);
+	myMap.geoObjects.add(myPlacemark2);
+	myMap.geoObjects.add(myPlacemark3);
+	myMap.geoObjects.add(myPlacemark4);
+	myMap.geoObjects.add(myPlacemark5);
+	myMap.geoObjects.add(myPlacemark6);
+	myMap.geoObjects.add(myPlacemark7);
+	myMap.geoObjects.add(myPlacemark8);
+	myMap.geoObjects.add(myPolyline)
+
+	}
+
+</script>
+<style>
+  .div {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000;
+    font-weight: 400;
+    padding: 40px 80px 40px 34px;
+  }
+  @media (max-width: 991px) {
+    .div {
+      padding: 0 20px;
+    }
+  }
+  .div-2 {
+    align-self: start;
+    display: flex;
+    gap: 11px;
+    font-size: 24px;
+    color: rgba(56, 160, 255, 0.7);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 991px) {
+    .div-2 {
+      white-space: initial;
+    }
+  }
+  .img {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 46px;
+  }
+  .div-3 {
+    font-family: Inter, sans-serif;
+    margin: auto 0;
+  }
+  .div-4 {
+    border-radius: 15px;
+    border-color: rgba(56, 160, 255, 1);
+    border-style: solid;
+    border-width: 3px;
+    background-color: #fff;
+    display: flex;
+    margin-top: 34px;
+    width: 100%;
+    max-width: 1280px;
+    flex-direction: column;
+    align-items: center;
+    font-size: 32px;
+    padding: 38px 37px;
+  }
+  @media (max-width: 991px) {
+    .div-4 {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+  }
+  .div-5 {
+    border-radius: 15px;
+    background-image: url(/static/caseapp/page2-imgs/tour-img-big1.png);
+    background-size: cover;
+    align-self: stretch;
+    align-items: start;
+    color: #fff;
+    padding: 330px 11px 8px;
+    font: 48px Inter, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .div-5 {
+      max-width: 100%;
+      font-size: 40px;
+      padding: 40px 20px 0 0;
+    }
+  }
+  .div-6 {
+    font-family: Inter, sans-serif;
+    margin-top: 58px;
+    font-size:26px;
+  }
+  @media (max-width: 991px) {
+    .div-6 {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  }
+  .div-8 {
+    font-family: Inter, sans-serif;
+    margin-top: 30px;
+    font-size:26px;
+  }
+  @media (max-width: 991px) {
+    .div-8 {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  }
+  .div-9 {
+    display: flex;
+    margin-top: 87px;
+    width: 848px;
+    max-width: 100%;
+    gap: 20px;
+    text-align: center;
+  }
+  @media (max-width: 991px) {
+    .div-9 {
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+  }
+  .div-10 {
+    font-family: Inter, sans-serif;
+    flex-grow: 1;
+    font-size: 25px;
+    flex-basis: auto;
+  }
+  .div-11 {
+    font-family: Inter, sans-serif;
+    flex-grow: 1;
+    font-size: 25px;
+    flex-basis: auto;
+  }
+  .div-12 {
+    font-family: Inter, sans-serif;
+    font-size: 32px;
+    border-style:solid;
+    border-radius: 15px;
+    background-color: rgba(56, 160, 255, 1);
+    margin-top: 60px;
+    color: fff;
+    font-weight: 700;
+    white-space: nowrap;
+    justify-content: center;
+    padding: 28px 90px;
+  }
+  .div-12:hover{
+    border-color: rgba(56, 160, 255, 1);
+    background-color: fff;
+    color: rgba(56, 160, 255, 1);
+    border-width: 3px;
+  }
+  @media (max-width: 991px) {
+    .div-12 {
+      max-width: 100%;
+      margin-top: 40px;
+      white-space: initial;
+      padding: 0 30px;
+    }
+  }
+  .div-13 {
+    border-radius: 15px;
+    border-color: rgba(56, 160, 255, 1);
+    border-style: solid;
+    border-width: 3px;
+    background-color: #fff;
+    display: flex;
+    margin-top: 85px;
+    width: 100%;
+    max-width: 1280px;
+    flex-direction: column;
+    font-size: 48px;
+    white-space: nowrap;
+    padding: 35px 51px 60px;
+  }
+  @media (max-width: 991px) {
+    .div-13 {
+      max-width: 100%;
+      margin-top: 40px;
+      font-size: 40px;
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
+  .div-14 {
+    font-family: Inter, sans-serif;
+    align-self: center;
+  }
+  @media (max-width: 991px) {
+    .div-14 {
+      font-size: 40px;
+    }
+  }
+  .div-15 {
+    border-color: rgba(56, 160, 255, 1);
+    border-width: 3px;
+    border-style: solid;
+    margin-top: 30px;
+    height: 627px;
+  }
+  @media (max-width: 991px) {
+    .div-15 {
+      max-width: 100%;
+    }
+  }
+</style>

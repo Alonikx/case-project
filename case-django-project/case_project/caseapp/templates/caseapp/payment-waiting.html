@@ -1,0 +1,102 @@
+{% load static %}
+<div class="div">
+  <div class="div-2">
+    <a href="{% url 'home'%}">
+    <img
+      loading="lazy"
+      src="{% static 'caseapp/allpages-img/arrow-icon.png' %}"
+      class="img"
+    />
+    </a>
+    <div class="div-3">Вернуться на главную страницу</div>
+  </div>
+  <div class="div-4">
+    <div class="div-5">
+      <div class="div-6">Ожидается оплата</div>
+    </div>
+  </div>
+</div>
+<style>
+  .div {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    padding: 40px 75px 80px 34px;
+  }
+  @media (max-width: 991px) {
+    .div {
+      padding: 0 20px;
+    }
+  }
+  .div-2 {
+    align-self: start;
+    display: flex;
+    gap: 11px;
+    font-size: 24px;
+    color: rgba(56, 160, 255, 0.7);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 991px) {
+    .div-2 {
+      white-space: initial;
+    }
+  }
+  .img {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 46px;
+  }
+  .div-3 {
+    font-family: Inter, sans-serif;
+    margin: auto 0;
+  }
+  .div-4 {
+    border-radius: 15px;
+    border-color: rgba(56, 160, 255, 1);
+    border-style: solid;
+    border-width: 3px;
+    background-color: #fff;
+    align-self: center;
+    display: flex;
+    margin-top: 32px;
+    width: 100%;
+    max-width: 1289px;
+    align-items: center;
+    color: #000;
+    justify-content: center;
+    padding: 80px 60px;
+  }
+  @media (max-width: 991px) {
+    .div-4 {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+  }
+  .div-5 {
+    display: flex;
+    flex-direction: column;
+    margin: 364px 0 381px;
+  }
+  @media (max-width: 991px) {
+    .div-5 {
+      max-width: 100%;
+      margin: 40px 0;
+    }
+  }
+  .div-6 {
+    align-self: center;
+    font: 40px Inter, sans-serif;
+  }
+  .div-7 {
+    margin-top: 10px;
+    font: 32px Inter, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .div-7 {
+      max-width: 100%;
+    }
+  }
+</style>

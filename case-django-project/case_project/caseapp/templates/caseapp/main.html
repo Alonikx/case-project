@@ -1,0 +1,216 @@
+{% load static %}
+<div class="div">
+  <div class="div-2">
+    <div class="div-3">
+      <div class="div-4">
+        <div class="div-5">Тур "Жигулевский заповедник"</div>
+        <a href="{% url 'info'%}">
+        <img
+          loading="lazy"
+          src="{% static 'caseapp/page1-imgs/images/icon1.png'%}"
+          class="img"/>
+         </a>
+      </div>
+      <div class="div-6">
+        <div class="div-7">Прогулочные маршруты села Ширяево — «Гора Верблюд»</div>
+        <img
+          loading="lazy"
+          src="{% static 'caseapp/page1-imgs/images/icon1.png'%}"
+          class="img"
+        />
+      </div>
+      <div class="div-8">
+        <div class="div-9">Туристическо-экскурсионный маршрут «Каменная Чаша»</div>
+        <img
+          loading="lazy"
+          src="{% static 'caseapp/page1-imgs/images/icon1.png'%}"
+          class="img"
+        />
+      </div>
+      <div class="div-10">
+        <div class="div-11">Прогулочные маршруты села Ширяево — «Монастырская гора»</div>
+        <img
+          loading="lazy"
+          src="{% static 'caseapp/page1-imgs/images/icon1.png'%}  "
+          class="img"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .div {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 48px;
+    color: #fff;
+    font-weight: 400;
+    justify-content: center;
+    padding: 69px 60px;
+  }
+  @media (max-width: 991px) {
+    .div {
+      font-size: 40px;
+      padding: 0 20px;
+    }
+  }
+  .div-2 {
+    border-radius: 15px;
+    border-color: rgba(56, 160, 255, 1);
+    border-style: solid;
+    border-width: 3px;
+    display: flex;
+    margin-top: 16px;
+    width: 100%;
+    max-width: 1280px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 37px 28px;
+  }
+  @media (max-width: 991px) {
+    .div-2 {
+      max-width: 100%;
+      font-size: 40px;
+      padding: 0 20px;
+    }
+  }
+  .div-3 {
+    justify-content: center;
+    border-radius: 15px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+  @media (max-width: 991px) {
+    .div-3 {
+      max-width: 100%;
+      font-size: 40px;
+    }
+  }
+  .div-4 {
+    border-radius: 15px;
+    background-image: url(/static/caseapp/page1-imgs/images/tour-image1.png);
+    background-size: cover;
+    display: flex;
+    gap: 20px;
+    padding: 46px 0 46px 31px;
+  }
+  .div-4: hover {
+    opacity: 0.5
+  }
+  @media (max-width: 991px) {
+    .div-4 {
+      max-width: 100%;
+      flex-wrap: wrap;
+      padding-left: 20px;
+      font-size: 40px;
+    }
+  }
+  .div-5 {
+    font-family: Inter, sans-serif;
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: auto 0;
+  }
+  @media (max-width: 991px) {
+    .div-5 {
+      max-width: 100%;
+      font-size: 40px;
+    }
+  }
+  .img {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 103px;
+    max-width: 100%;
+  }
+  .div-6 {
+    border-radius: 15px;
+    background-image: url(/static/caseapp/page1-imgs/images/tour-image2.png);
+    background-size: cover;
+    display: flex;
+    margin-top: 26px;
+    gap: 20px;
+    padding: 46px 0 46px 31px;
+  }
+  @media (max-width: 991px) {
+    .div-6 {
+      max-width: 100%;
+      flex-wrap: wrap;
+      padding-left: 20px;
+      font-size: 40px;
+    }
+  }
+  .div-7 {
+    font-family: Inter, sans-serif;
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: auto 0;
+  }
+  @media (max-width: 991px) {
+    .div-7 {
+      max-width: 100%;
+      font-size: 40px;
+    }
+  }
+  .div-8 {
+    border-radius: 15px;
+    background-image: url(/static/caseapp/page1-imgs/images/tour-image3.png);
+    background-size: cover;
+    display: flex;
+    margin-top: 26px;
+    gap: 20px;
+    padding: 46px 0 46px 31px;
+  }
+  @media (max-width: 991px) {
+    .div-8 {
+      max-width: 100%;
+      flex-wrap: wrap;
+      padding-left: 20px;
+      font-size: 40px;
+    }
+  }
+  .div-9 {
+    font-family: Inter, sans-serif;
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: auto 0;
+  }
+  @media (max-width: 991px) {
+    .div-9 {
+      max-width: 100%;
+      font-size: 40px;
+    }
+  }
+  .div-10 {
+    border-radius: 15px;
+    background-image: url(/static/caseapp/page1-imgs/images/tour-image4.png);
+    background-size: cover;
+    display: flex;
+    margin-top: 26px;
+    gap: 20px;
+    padding: 46px 0 46px 31px;
+  }
+  @media (max-width: 991px) {
+    .div-10 {
+      max-width: 100%;
+      flex-wrap: wrap;
+      padding-left: 20px;
+      font-size: 40px;
+    }
+  }
+  .div-11 {
+    font-family: Inter, sans-serif;
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: auto 0;
+  }
+  @media (max-width: 991px) {
+    .div-11 {
+      max-width: 100%;
+      font-size: 40px;
+    }
+  }
+</style>
